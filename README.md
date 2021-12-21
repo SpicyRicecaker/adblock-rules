@@ -1,4 +1,4 @@
-# Adlblock-Rules
+# Adblock-Rules
 
 Removing infinite scroll (think YouTube recommended) and other questionable html elements from the websites I use.
 
