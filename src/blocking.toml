@@ -1,0 +1,28 @@
+[websites]
+
+# Use along with dfyoutube
+youtube = [
+    # the feed is the worst of the worst
+    # this rule below blocks all of the feeds in subscription tab, homepage, trending, etc.
+    "www.youtube.com##ytd-browse.style-scope.ytd-page-manager",
+    # the YouTube sidebar gives user access to the feed, so we want to block it
+    "www.youtube.com###guide-inner-content",
+    # looking at channels as a user is a complete time sink as well. (When on a channel page, of a channel I have an interest in, I often click `sort-by` `most popular`, and then spend a good couple hours mindlessly consuming content
+    "www.youtube.com/channel/",
+    "www.youtube.com/c/",
+    "www.youtube.com/user/",
+]
+
+# Whenever I use this website for an extended period of time, I feel absolutely horrible after. It might be the worst out of all the websites I've ever seen.
+twitch = ["||www.twitch.tv^"]
+
+# Blocking the adblock blocker
+spanishdict = [
+    "www.spanishdict.com##.ReactModal__Overlay.ReactModal__Overlay--after-open._3_oaIw0N",
+]
+
+# Out of all the websites on this list, spotify is the least toxic. I declare it so because it's much harder for me to dump hundreds and thousands of hours doing nothing but listening to music
+spotify = [
+    "open.spotify.com##section.WR_hhqOgNl2oxWjFP6Ml:nth-of-type(2) > .QNIdF86JU_1vh07jXsY2.Hgy6HYholBzqtff1fOai",
+    "open.spotify.com##section.WR_hhqOgNl2oxWjFP6Ml:nth-of-type(8) > .QNIdF86JU_1vh07jXsY2.Hgy6HYholBzqtff1fOai",
+]
