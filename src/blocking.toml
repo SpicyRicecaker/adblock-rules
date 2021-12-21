@@ -1,4 +1,9 @@
+# problem: I'm not sure if the hashes for certain elements (e.g. `sdfasdfzxcvhasdflasjhk` will be changed overtime as the website gets updated
+# adblock also doesn't protect against mobile apps
+
 [websites]
+# Whenever I use this website for an extended period of time, I feel absolutely horrible after. It might be the worst out of all the websites I've ever seen.
+twitch = ["||www.twitch.tv^"]
 
 # Use along with dfyoutube
 youtube = [
@@ -13,16 +18,36 @@ youtube = [
     "www.youtube.com/user/",
 ]
 
-# Whenever I use this website for an extended period of time, I feel absolutely horrible after. It might be the worst out of all the websites I've ever seen.
-twitch = ["||www.twitch.tv^"]
+reddit = [
+    # This rule blocks the reddit feed (along with its infinite scroll), but still allows the user to view individual posts and comments
+    "www.reddit.com##.rpBJOHq2PR60pnwJlUyP0",
+]
 
-# Blocking the adblock blocker
-spanishdict = [
-    "www.spanishdict.com##.ReactModal__Overlay.ReactModal__Overlay--after-open._3_oaIw0N",
+# if I still want github feeds, I can use thunderbird to open the rss feed link
+github = [
+    # the navigation bar for all "feeds"
+    "github.com##.site-subnav.color-bg-default.site-subnav-sticky.js-sticky",
+    # the MAIN feed flexbox layout 
+    "github.com##.flex-auto.col-md-8.col-lg-8.px-3.px-lg-5",
+    # the entire flexbox layout for EXPLORE
+    "github.com##.d-md-flex.flex-wrap.flex-lg-nowrap.gutter-md",
+    # all the items in TRENDING
+    "github.com##.position-relative.container-lg.p-responsive.pt-6",
+    # the items in card form for both TOPICS and COLLECTIONs
+    "github.com##.container-lg.p-responsive.mt-6",
+    # the items in compact form for COLLECTIONs
+    "github.com##.container-md.p-responsive.py-6",
+    # the items in compact form for TOPICS
+    "github.com##.d-lg-flex.container-lg.p-responsive"
 ]
 
 # Out of all the websites on this list, spotify is the least toxic. I declare it so because it's much harder for me to dump hundreds and thousands of hours doing nothing but listening to music
 spotify = [
     "open.spotify.com##section.WR_hhqOgNl2oxWjFP6Ml:nth-of-type(2) > .QNIdF86JU_1vh07jXsY2.Hgy6HYholBzqtff1fOai",
     "open.spotify.com##section.WR_hhqOgNl2oxWjFP6Ml:nth-of-type(8) > .QNIdF86JU_1vh07jXsY2.Hgy6HYholBzqtff1fOai",
+]
+
+# Blocking the adblock blocker
+spanishdict = [
+    "www.spanishdict.com##.ReactModal__Overlay.ReactModal__Overlay--after-open._3_oaIw0N",
 ]
