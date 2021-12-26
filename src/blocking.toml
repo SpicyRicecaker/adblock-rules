@@ -47,7 +47,16 @@ spotify = [
     "open.spotify.com##section.WR_hhqOgNl2oxWjFP6Ml:nth-of-type(8) > .QNIdF86JU_1vh07jXsY2.Hgy6HYholBzqtff1fOai",
 ]
 
+gmail = [
+    "||mail.google.com^"
+]
+
 # Blocking the adblock blocker
 spanishdict = [
     "www.spanishdict.com##.ReactModal__Overlay.ReactModal__Overlay--after-open._3_oaIw0N",
+]
+
+google_books = [
+    "books.googleusercontent.com##reader-main > .ng-star-inserted",
+    "books.googleusercontent.com##.scrubber-container"
 ]
