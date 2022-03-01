@@ -1,3 +1,6 @@
+# a toml file, while easy to parse, is not the best way to organize these links
+# better would be an `.org` or `.md` file, and we write the parser for that, then symlink obsidian's repo here
+
 # problem: I'm not sure if the hashes for certain elements (e.g. `sdfasdfzxcvhasdflasjhk` will be changed overtime as the website gets updated
 # adblock also doesn't protect against mobile apps
 
@@ -9,13 +12,31 @@ twitch = ["||www.twitch.tv^"]
 youtube = [
     # the feed is the worst of the worst
     # this rule below blocks all of the feeds in subscription tab, homepage, trending, etc.
-    "www.youtube.com##ytd-browse.style-scope.ytd-page-manager",
+    # the problem is this thing also blocks channel page
+    # "www.youtube.com##ytd-browse.style-scope.ytd-page-manager",
+    # # so we use a more specific rule
+    # Hide link to an endpoint
+    # 'www.youtube.com###endpoint[title="Subscriptions"]',
+    # Hide Subscriptions tab's content
+    # still don't get how it works, but check https://www.reddit.com/r/uBlockOrigin/comments/ooimts/blocking_youtube_subscriptions/ for more infor
+    'www.youtube.com##ytd-browse[page-subtype="subscriptions"]',
+    'www.youtube.com##ytd-browse[page-subtype="trending"]',
+    'www.youtube.com##ytd-browse[page-subtype="music"]',
     # the YouTube sidebar gives user access to the feed, so we want to block it
     "www.youtube.com###guide-inner-content",
     # looking at channels as a user is a complete time sink as well. (When on a channel page, of a channel I have an interest in, I often click `sort-by` `most popular`, and then spend a good couple hours mindlessly consuming content
-    "www.youtube.com/channel/",
-    "www.youtube.com/c/",
-    "www.youtube.com/user/",
+    # change: we're going to change this and use DF YouTube to block channel pages, so we have double prot
+    # "www.youtube.com/channel/",
+    # "www.youtube.com/c/",
+    # "www.youtube.com/user/",
+    # blocks content in the style of the main youtube feed (recommended)
+    "www.youtube.com###secondary",
+    # the watch next videos (are sometimes useful, but are easily abused)
+    "www.youtube.com##ytd-item-section-renderer.ytd-watch-next-secondary-results-renderer.style-scope",
+]
+
+twitter = [
+    "twitter.com##.r-13qz1uu.r-2llsf.r-1wtj0ep.r-16y2uox.r-18u37iz.r-1niwhzg.r-1oszu61.css-1dbjc4n",
 ]
 
 reddit = [
@@ -38,7 +59,7 @@ github = [
     # the items in compact form for COLLECTIONs
     "github.com##.container-md.p-responsive.py-6",
     # the items in compact form for TOPICS
-    "github.com##.d-lg-flex.container-lg.p-responsive"
+    "github.com##.d-lg-flex.container-lg.p-responsive",
 ]
 
 # Out of all the websites on this list, spotify is the least toxic. I declare it so because it's much harder for me to dump hundreds and thousands of hours doing nothing but listening to music
@@ -47,9 +68,7 @@ spotify = [
     "open.spotify.com##section.WR_hhqOgNl2oxWjFP6Ml:nth-of-type(8) > .QNIdF86JU_1vh07jXsY2.Hgy6HYholBzqtff1fOai",
 ]
 
-gmail = [
-    "||mail.google.com^"
-]
+gmail = []
 
 # Blocking the adblock blocker
 spanishdict = [
@@ -58,5 +77,5 @@ spanishdict = [
 
 google_books = [
     "books.googleusercontent.com##reader-main > .ng-star-inserted",
-    "books.googleusercontent.com##.scrubber-container"
+    "books.googleusercontent.com##.scrubber-container",
 ]
