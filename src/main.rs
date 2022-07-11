@@ -1,24 +1,44 @@
+use regex::Regex;
 use std::fs;
-use toml::Value;
+use std::process::{Command, Stdio};
 
 fn main() -> Result<(), std::io::Error> {
-    // for entry in fs::read_dir(".")?.flatten() {
-    //     dbg!(entry.file_name());
-    // }
+    // We use markdown instead of something like toml or json, since I really want to give context
+    // behind the rules
+    let regex = Regex::new(r"```txt\n([^`]*)```").unwrap();
 
-    let categories: Value = fs::read_to_string("src/blocking.toml")?.parse().unwrap();
+    let file: String = fs::read_to_string("src/ublock.md")?.parse().unwrap();
 
-    let websites = categories.as_table().unwrap().get("websites").unwrap();
+    let captures: String = regex
+        .captures_iter(&file)
+        .flat_map(|cap| {
+            // dbg!(&cap);
+            cap.get(1).unwrap().as_str().trim().lines()
+        })
+        .map(|l|l.to_string())
+        .filter(|l|&l[..1] != "#")
+        .collect::<Vec<String>>()
+        .join("\n");
 
-    let mut total_rules = Vec::new();
-    for rules in websites.as_table().unwrap().values() {
-        for rule in rules.as_array().unwrap() {
-            total_rules.push(rule.as_str().unwrap());
-        }
+    if cfg!(target_os = "macos") {
+        let pbcopy = Command::new("pbcopy")
+            .stdin(Stdio::piped())
+            .spawn()?;
+        
+        let _echo = Command::new("echo")
+            .arg(&captures)
+            .stdout(pbcopy.stdin.unwrap())
+            .spawn()?;
+
+        // println!("{output:?}");
+        // Command::new("pbcopy").spawn().expect("error copying to clipboard");
+        println!("successfully copied to clipboard");
+    } else {
+        println!("not copied to clipboard, OS not supported");
     }
 
     fs::create_dir_all("out")?;
-    fs::write("out/OUTPUT.txt", total_rules.join("\n"))?;
+    fs::write("out/OUTPUT.txt", captures)?;
 
     Ok(())
 }

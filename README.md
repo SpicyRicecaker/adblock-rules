@@ -4,7 +4,11 @@ Removing infinite scroll (think YouTube recommended) and other questionable html
 
 ## Getting Started
 
-clone the repo. cargo run. copy contents of `out/OUTPUT.txt` into whichever adblock you use.
+clone the repo. cargo run. 
+
+symlink `.md` file with code blocks to `src/ublock.md`
+
+copy contents of `out/OUTPUT.txt` into whichever adblock you use.
 
 ```shell
 git clone https://github.com/SpicyRicecaker/adblock-rules.git
